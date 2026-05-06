@@ -161,6 +161,7 @@ export const projects = [
     tags: ['Android', 'Java', 'Game'],
     repo: 'https://github.com/ChiobiJason/TheOtherSide',
     live: null,
+    screenshot: '/screenshots/the-other-side.png',
     featured: false,
     rank: 10,
     accent: 'linear-gradient(135deg, #1d1d1f 0%, #424245 100%)',
