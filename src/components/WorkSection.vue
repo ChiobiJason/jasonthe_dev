@@ -1,4 +1,6 @@
 <script setup>
+import { RouterLink } from 'vue-router'
+
 defineProps({
   projects: {
     type: Array,
@@ -21,7 +23,6 @@ function primaryHref(p) {
       <div class="work__intro">
         <div class="work__title-row">
           <h2 id="projects-heading" class="work__title">Projects</h2>
-          <a v-if="showViewAll" class="work__viewall" href="/projects">View all</a>
         </div>
         <p class="work__subtitle">
           A few things I’ve shipped. The full list (with links) is on the projects page.
@@ -82,6 +83,10 @@ function primaryHref(p) {
           </article>
         </li>
       </ul>
+
+      <div v-if="showViewAll" class="work__view-all-wrap">
+        <RouterLink to="/projects" class="work__view-all-btn">View all projects</RouterLink>
+      </div>
     </div>
   </section>
 </template>
@@ -115,25 +120,43 @@ function primaryHref(p) {
 .work__title-row {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 1rem;
 }
 
-.work__viewall {
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--accent);
-  text-decoration: none;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  padding: 0 0.25rem;
-  border-radius: 8px;
+.work__view-all-wrap {
+  margin-top: clamp(1.75rem, 4vw, 2.25rem);
+  display: flex;
+  justify-content: center;
 }
 
-.work__viewall:hover {
-  color: var(--accent-hover);
-  text-decoration: underline;
+.work__view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 1.35rem;
+  border-radius: 980px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  text-decoration: none;
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid transparent;
+  transition: background var(--duration) var(--ease), transform var(--duration) var(--ease);
+}
+
+.work__view-all-btn:hover {
+  background: var(--accent-hover);
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .work__view-all-btn:active {
+    transform: scale(0.98);
+  }
 }
 
 .work__subtitle {
