@@ -1,11 +1,25 @@
-<script setup></script>
+<script setup>
+import AppHeader from './components/AppHeader.vue'
+import AppFooter from './components/AppFooter.vue'
+import { RouterView } from 'vue-router'
+import { Analytics } from '@vercel/analytics/vue'
+import { site } from './content.js'
+
+const year = new Date().getFullYear()
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <div id="top">
+    <Analytics />
+    <a class="skip-link" href="#main">Skip to content</a>
+    <AppHeader :site-name="site.nickname" />
+    <RouterView />
+    <AppFooter :name="site.name" :year="year" />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+#main {
+  outline: none;
+}
+</style>
